@@ -1,7 +1,7 @@
 package com.session.service;
 
-import com.session.service.client.SessionClient;
-import com.session.service.client.SessionClientImpl;
+import com.session.service.client.SessionsClient;
+import com.session.service.client.SessionsClientImpl;
 import com.session.service.entities.SessionCreated;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +19,11 @@ public class ClientTest {
     static final String EMAIL = "test@test.com";
     static final int SESSION_TIMEOUT_MS = 30000;
 
-    private SessionClient client;
+    private SessionsClient client;
 
     @Before
     public void setUp() throws Exception {
-        client = new SessionClientImpl("http://localhost:6666", "");
+        client = new SessionsClientImpl("http://localhost:6666", "");
     }
 
     @Test

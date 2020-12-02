@@ -7,7 +7,7 @@ import com.session.service.error.SessionClientException;
 /**
  * Defines a HTTP client for communicating with the sessions service API.
  */
-public interface SessionClient {
+public interface SessionsClient {
 
     /**
      * Create a new {@link Session}.

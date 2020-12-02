@@ -20,15 +20,15 @@ import java.io.InputStreamReader;
 
 import static java.text.MessageFormat.format;
 
-public class SessionClientImpl implements SessionClient {
+public class SessionsClientImpl implements SessionsClient {
 
-    private static Logger LOG = LoggerFactory.getLogger(SessionClientImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(SessionsClientImpl.class);
 
     private String host;
     private String serviceAuthToken;
     private Http http;
 
-    public SessionClientImpl(final String host, final String serviceAuthToken) {
+    public SessionsClientImpl(final String host, final String serviceAuthToken) {
         this.host = host;
         this.serviceAuthToken = serviceAuthToken;
         this.http = new Http();
@@ -48,7 +48,7 @@ public class SessionClientImpl implements SessionClient {
     private SessionCreated postSession(String userEmail) {
         try {
             String jsonStr = http.toJson(new CreateNewSession(userEmail));
-            HttpPost httpPost = http.createHttpPost(host, "/session", jsonStr);
+            HttpPost httpPost = http.createHttpPost(host, "/sessions", jsonStr);
             return http.doPost(httpPost, createSessionResponseHandler());
         } catch (Exception ex) {
             throw new SessionClientException(ex);
@@ -74,7 +74,7 @@ public class SessionClientImpl implements SessionClient {
         ZebedeeSession session = null;
 
         if (StringUtils.isNotEmpty(sessionID)) {
-            HttpGet httpGet = http.createHttpGet(host, "/session/" + sessionID);
+            HttpGet httpGet = http.createHttpGet(host, "/sessions/" + sessionID);
 
             try {
                 session = http.doGet(httpGet, getSessionResponseHandler());
